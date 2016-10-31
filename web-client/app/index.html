@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en" class="no-js" ng-app="canvass">
+<head>
+  <meta charset="utf-8">
+  <title>Canvass Dashboard</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+  <link rel="stylesheet" href="bower_components/multiselect/css/multi-select.css" />
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+  <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-switch/angular-ui-switch.css" />
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+  <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+  <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/css-init.css"/>
+  <link rel="stylesheet" href="styles/bootstrap.css"/>
+  <link rel="stylesheet" href="styles/materialadmin.css"/>
+  <link rel="stylesheet" href="styles/font-awesome.min.css"/>
+  <link rel="stylesheet" href="styles/material-design-iconic-font.min.css"/>
+  <link rel="stylesheet" href="styles/push-buttons.css">
+  <link rel="stylesheet" href="styles/blockrain.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+
+  <script src='//maps.googleapis.com/maps/api/js'></script>
+
+
+  <!--Start of Zopim Live Chat Script-->
+  <script type="text/javascript">
+    window.$zopim || (function (d, s) {
+      var z = $zopim = function (c) {
+        z._.push(c)
+      }, $ = z.s =
+        d.createElement(s), e = d.getElementsByTagName(s)[0];
+      z.set = function (o) {
+        z.set._.push(o)
+      };
+      z._ = [];
+      z.set._ = [];
+      $.async = !0;
+      $.setAttribute("charset", "utf-8");
+      $.src = "//v2.zopim.com/?3jRQtBrX5rVlCNRAfBGHW1D3c1oAgK1Q";
+      z.t = +new Date;
+      $.type = "text/javascript";
+      e.parentNode.insertBefore($, e)
+    })(document, "script");
+
+    $zopim(function () {
+      $zopim.livechat.badge.setImage('images/logo.png');
+      $zopim.livechat.badge.setText('We\'re Online Chat with us');
+      $zopim.livechat.theme.reload(); // apply new theme settings
+    });
+
+  </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-79492000-1', { 'cookieDomain': 'none' });
+  </script>
+</head>
+<!--End of Zopim Live Chat Script-->
+<body class="menubar-hoverable header-fixed menubar-pin" ng-controller="parentController" ng-cloak>
+
+<!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<header id="header" ng-show="currentUser">
+  <div class="headerbar">
+    <div class="headerbar-left">
+      <ul class="header-nav header-nav-options">
+        <li class="header-nav-brand">
+          <div class="brand-holder">
+            <a href="#/">
+              <span class="text-lg text-bold text-primary"><img src="images/logo.png" alt=""></span>
+              <span class="logo-text">VICS</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="headerbar-right">
+      <ul class="header-nav header-nav-profile">
+        <li id="dropdown" class="dropdown">
+          <a href="javascript:void(0);" ng-click="onSelectDropdown()" class="dropdown-toggle ink-reaction"
+             data-toggle="dropdown">
+								<span class="profile-info">
+									{{currentUser.username}}
+									<small>{{currentUser | userRoleLabel}}</small>
+								</span>
+          </a>
+
+          <ul class="dropdown-menu animation-dock">
+            <li class="dropdown-header">Canvassing</li>
+            <li><a href="#/canvass">Canvass Cards</a></li>
+            <li><a href="#/gotv">GOTV</a></li>
+            <li><a href="#/gotpv">GOTPV</a></li>
+            <li class="dropdown-header">Data Entry</li>
+            <li><a href="#/canvassinput">Canvass Input</a></li>
+            <li><a href="#/recordvote">Record Voted</a></li>
+            <li class="dropdown-header">User</li>
+            <li><a href="#/profile">My Profile</a></li>
+            <li><a target="_blank" href="https://docs.google.com/document/d/1qr2gRTJHcWzX94wvgmUbRLmpdoqW5mpOA66jMNg-15o/edit?usp=sharing">User Guide</a></li>
+            <li ng-show="currentUser.role === 'ADMIN'"><a href="#/admin">Admin</a></li>
+            <li class="divider"></li>
+            <li><a href="../.." ng-click="logout()"><i class="fa fa-fw fa-power-off text-danger"></i>Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div id="base">
+
+  <div id="content">
+    <div ng-view autoscroll="true"></div>
+  </div>
+
+  <div id="menubar" class="menubar-inverse" ng-show="currentUser">
+    <div class="menubar-fixed-panel">
+      <div>
+        <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar"
+           href="javascript:void(0);">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    </div>
+    <div class="menubar-scroll-panel">
+
+      <ul id="main-menu" class="gui-controls">
+        <li>
+          <a href="#/dashboard">
+            <div class="gui-icon"><i class="md md-home"></i></div>
+            <span class="title">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#/canvass">
+            <div class="gui-icon"><i class="md md-assignment-ind"></i></div>
+            <span class="title">Canvass Cards</span>
+          </a>
+        </li>
+        <li>
+          <a href="#/canvassinput">
+            <div class="gui-icon"><i class="md md-assignment-return"></i></div>
+            <span class="title">Canvass Input</span>
+          </a>
+        </li>
+        <li>
+          <a href="#/gotv">
+            <div class="gui-icon"><i class="md md-alarm"></i></div>
+            <span class="title">GOTV</span>
+          </a>
+        </li>
+        <li>
+          <a href="#/recordvote">
+            <div class="gui-icon"><i class="md md-check-box"></i></div>
+            <span class="title">Record Voted</span>
+          </a>
+        </li>
+        <li ng-show="currentUser.role === 'ADMIN'">
+          <a href="#/admin">
+            <div class="gui-icon"><i class="md md-security"></i></div>
+            <span class="title">Admin</span>
+          </a>
+        </li>
+        <li ng-show="hasPermission('VIEW_MAPS')">
+          <a href="#/map">
+            <div class="gui-icon"><i class="md md-map"></i></div>
+            <span class="title">Maps</span>
+          </a>
+        </li>
+        <li ng-show="currentUser.role === 'USER'">
+          <a href="#/profile">
+            <div class="gui-icon"><i class="md md-face-unlock"></i></div>
+            <span class="title">Profile</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="menubar-foot-panel">
+        <small class="no-linebreak hidden-folded">
+          <span class="opacity-75">Copyright &copy; 2016</span> <strong>Vote Leave</strong>
+        </small>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- libs -->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="xlibs/html5shiv.js"></script>
+<![endif]-->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/respond/dest/respond.src.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/multiselect/js/jquery.multi-select.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
+<script src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+<script src="bower_components/angular-csv-import-tmp/dist/angular-csv-import.js"></script>
+<script src="bower_components/blockrain/dist/blockrain.jquery.min.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+<script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
+<script src="bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
+<script src="bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
+<script src="bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
+<script src="bower_components/js-rich-marker/src/richmarker.js"></script>
+<script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/nvd3/build/nv.d3.js"></script>
+<script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+<script src="bower_components/topojson/topojson.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+<script src="bower_components/SHA-1/sha1.js"></script>
+<script src="bower_components/angulartics/src/angulartics.js"></script>
+<script src="bower_components/angulartics-google-analytics/lib/angulartics-ga.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="xlibs/jspdf.min.js"></script>
+<script src="xlibs/jspdf.plugin.autotable.js"></script>
+<script src="xlibs/egg.js"></script>
+<script src="xlibs/blockrain.min.js"></script>
+
+<script src="scripts/app.js"></script>
+<script src="scripts/controller/parentController.js"></script>
+<script src="scripts/controller/canvassGeneratorController.js"></script>
+<script src="scripts/controller/adminDashboardController.js"></script>
+<script src="scripts/controller/resetPasswordController.js"></script>
+<script src="scripts/controller/newPasswordController.js"></script>
+<script src="scripts/controller/dashboardController.js"></script>
+<script src="scripts/controller/loginController.js"></script>
+<script src="scripts/controller/canvassInputController.js"></script>
+<script src="scripts/controller/statsController.js"></script>
+<script src="scripts/controller/adminUserController.js"></script>
+<script src="scripts/service/statsService.js"></script>
+<script src="scripts/controller/profileController.js"></script>
+<script src="scripts/controller/recordVoteController.js"></script>
+<script src="scripts/controller/associationsController.js"></script>
+<script src="scripts/controller/gotvController.js"></script>
+<script src="scripts/controller/gotpvController.js"></script>
+<script src="scripts/controller/csvUploadController.js"></script>
+<script src="scripts/directive/statCard.js"></script>
+<script src="scripts/directive/ukConstituencyMap.js"></script>
+<script src="scripts/directive/uppercased.js"></script>
+<script src="scripts/directive/wardSearch.js"></script>
+<script src="scripts/directive/voterSearch.js"></script>
+<script src="scripts/service/resetPasswordService.js"></script>
+<script src="scripts/service/wardService.js"></script>
+<script src="scripts/service/constituencyService.js"></script>
+<script src="scripts/service/healthService.js"></script>
+<script src="scripts/service/geoService.js"></script>
+<script src="scripts/service/gotvService.js"></script>
+<script src="scripts/service/calendarService.js"></script>
+<script src="scripts/service/electorService.js"></script>
+<script src="scripts/service/userService.js"></script>
+<script src="scripts/service/authService.js"></script>
+<script src="scripts/service/permissionService.js"></script>
+<script src="scripts/service/voteService.js"></script>
+<script src="scripts/service/initPlugins.js"></script>
+<script src="scripts/filter/numericConversions.js"></script>
+<script src="scripts/filter/textConversions.js"></script>
+<script src="scripts/common/ringBuffer.js"></script>
+<script src="scripts/common/util.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<header id="header" ng-show="streets && streets.length && showSubMenu && !showFullScreenStreetsMap">
+  <div class="headerbar">
+    <div class="headerbar-left">
+      <ul class="header-nav header-nav-options">
+        <li class="header-nav-brand">
+          <div class="brand-holder">
+            <h4>{{numStreetsSelected}} of {{streets.length}} <span class="hidden-xs">selected</span></h4>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="headerbar-right">
+      <div class="print-button-bar" style="margin: 13px 10px 13px 0;">
+
+        <div class="btn-group pull-right">
+          <button type="button" ng-click="onPrintSelected()" class="btn ink-reaction btn-default-light">Print Selected
+          </button>
+          <button type="button" class="btn ink-reaction btn-danger dropdown-toggle" data-toggle="dropdown"><i
+            class="fa fa-caret-down"></i></button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a data-toggle="modal" data-target="#simpleModal">Print All</a></li>
+            <li><a ng-click="onPrintPriority()">Print Priority</a></li>
+            <li><a ng-click="onSelectPriority()">Select Priority</a></li>
+            <li><a ng-click="onPrintStreetsMap()">Show Streets In Map</a></li>
+            <li><a ng-click="onClearSelections()">Clear</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div ng-if="showFullScreenStreetsMap">
+  <ui-gmap-google-map id="selectedStreetsMap" center='map.center' zoom='map.zoom' options="map.options">
+    <ui-gmap-markers fit="true" models="map.markers" coords="'self'" modelsbyref="false" click="onClick">
+      <ui-gmap-windows show="show">
+        <div ng-non-bindable>{{title}}</div>
+      </ui-gmap-windows>
+    </ui-gmap-markers>
+  </ui-gmap-google-map>
+  <br>
+  <section>
+    <div class="section-body contain-lg">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Hint: to print the map, select the maximise icon in the top right corner of the map. Move the map into a desirable position, then take a screenshot (press the "Print Screen" button on Windows or cmd shift 4 on Mac).
+            Edit and print the resulting screenshot image with the software of your choice.
+          </p>
+          <button class="btn btn-sm btn-danger text-center" ng-click="onCloseMap()">BACK</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="canvassinputcontent" ng-show="contentLoaded && !showFullScreenStreetsMap">
+  <!-- Choose Constituency -->
+  <div class="section-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">Canvass Card Generator</h2>
+      </div>
+      <div class="col-lg-8">
+        <article class="lead">
+          <p>
+            Print canvass cards for your Wards
+          </p>
+        </article>
+      </div>
+    </div>
+    <div class="row" ng-show="userHasNoAssociations">
+      <div class="col-sm-12">
+        <div class="alert alert-callout alert-warning" role="alert">
+          <strong>Warning!</strong> You do not have any wards associated with your account. This will prevent
+          you from submitting canvass data. Please contact your regional director to request access.
+        </div>
+      </div>
+    </div>
+
+    <ward-search ng-show="contentLoaded && !userHasNoAssociations"
+                 on-select-constituency="onSelectConstituency"
+                 on-select-ward="onSelectWard"
+                 on-loaded-constituencies="onLoadedConstituencies"></ward-search>
+
+    <!-- Download Cards -->
+    <div id="printCards" class="row" ng-if="streets && streets.length">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-head">
+            <header>3. Download Canvass Cards</header>
+          </div>
+          <div class="card-body tab-content style-default-bright">
+            <div class="row">
+              <div class="col-lg-12">
+                <p>You have selected the following constituency and ward.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row">
+
+                  <!-- Constituency Card -->
+                  <div class="col-md-4 col-sm-6">
+                    <div class="card">
+                      <div class="card-body no-padding">
+                        <div class="alert alert-callout alert-danger no-margin">
+                          <strong
+                            class="pull-right text-default-light text-lg">{{constituencySearchModel.code}}</strong>
+                          <strong class="text-lg">{{constituencySearchModel.name}}</strong><br/>
+                          <span class="opacity-50">Constituency</span>
+                          <div class="stick-bottom-left-right">
+                            <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Ward Card-->
+                  <div class="col-md-4 col-sm-6">
+                    <div class="card">
+                      <div class="card-body no-padding">
+                        <div class="alert alert-callout alert-danger no-margin">
+                          <strong class="pull-right text-default-light text-lg">{{wardSearchModel.code}}</strong>
+                          <strong class="text-lg">{{wardSearchModel.name}}</strong><br/>
+                          <span class="opacity-50">Ward</span>
+                          <div class="stick-bottom-left-right">
+                            <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Counts Card-->
+                  <div class="col-md-4 hidden-sm">
+                    <div class="card">
+                      <div class="card-body no-padding">
+                        <div class="alert alert-callout alert-danger no-margin">
+                          <strong class="text-lg">{{wardVotersCanvassed}} / {{wardTotalVoters}}</strong><br/>
+                          <span class="opacity-50">Voters Canvassed</span>
+                          <div class="stick-bottom-left-right">
+                            <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+                <div class="card">
+                  <div class="card-body style-gray-dark no-y-padding">
+                    <form class="form form-inverse">
+                      <div class="form-group">
+                        <div class="input-group input-group-lg col-xs-12">
+                          <div class="input-group-content">
+                            <input type="text" class="form-control" ng-model="streetFilter" id="searchInput"
+                                   placeholder="Filter Streets">
+                            <div class="form-control-line"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="card-body">
+                    <br>
+                    <div class="btn-group pull-left">
+                      <button type="button" ng-click="onPrintSelected()" class="btn ink-reaction btn-default-light">
+                        Print <span class="hidden-xs">selected</span></button>
+                      <button type="button" class="btn ink-reaction btn-danger dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-caret-down"></i></button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a data-toggle="modal" data-target="#simpleModal">Print All</a></li>
+                        <li><a ng-click="onPrintPriority()" ng-disabled="numStreetsSelected === 0">Print Priority</a></li>
+                        <li><a ng-click="onSelectPriority()">Select Priority</a></li>
+                        <li><a ng-click="onPrintStreetsMap()">Show Streets In Map</a></li>
+                        <li><a ng-click="onClearSelections()">Clear</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="btn-group pull-right">
+                      <button type="button" class="btn ink-reaction btn-flat dropdown-toggle" data-toggle="dropdown">
+                        {{currentSort}} <i class="fa fa-caret-down text-default-light"></i>
+                      </button>
+                      <ul class="dropdown-menu animation-expand" role="menu">
+                        <li><a ng-click="sortStreets('priority', 'asc', 'Priority ASC')"><i
+                          class="md md-keyboard-arrow-up"></i> Priority</a></li>
+                        <li><a ng-click="sortStreets('priority', 'desc', 'Priority DESC')"><i
+                          class="md md-keyboard-arrow-down"></i> Priority</a></li>
+                        <li><a ng-click="sortStreets('mainStreet', 'asc', 'Street ASC')"><i
+                          class="md md-keyboard-arrow-up"></i> Street</a></li>
+                        <li><a ng-click="sortStreets('mainStreet', 'desc', 'Street DESC')"><i
+                          class="md md-keyboard-arrow-down"></i> Street</a></li>
+                        <li><a ng-click="sortStreets('numVoters', 'asc', 'Voters ASC')"><i
+                          class="md md-keyboard-arrow-up"></i> # Voters</a></li>
+                        <li><a ng-click="sortStreets('numVoters', 'desc', 'Voters DESC')"><i
+                          class="md md-keyboard-arrow-down"></i> # Voters</a></li>
+                        <li><a ng-click="sortStreets('numCanvassed', 'asc', 'Canvassed ASC')"><i
+                          class="md md-keyboard-arrow-up"></i> # Canvassed</a></li>
+                        <li><a ng-click="sortStreets('numCanvassed', 'desc', 'Canvassed DESC')"><i
+                          class="md md-keyboard-arrow-down"></i> # Canvassed</a></li>
+                      </ul>
+                    </div>
+
+                    <br><br>
+
+                    <!-- Streets table -->
+                    <table class="table table-hover no-margin">
+                      <thead>
+                      <tr>
+                        <th>
+                        </th>
+                        <th>Street</th>
+                        <th class="stats-cell">Priority</th>
+                        <th class="hidden-xs stats-cell">Canvass Stats</th>
+                        <th class="stats-cell">Tools</th>
+                      </tr>
+                      </thead>
+                      <tbody id="streetsList">
+                      <tr ng-repeat="street in streets | filter:streetFilter">
+                        <td>
+                          <div class="checkbox checkbox-inline checkbox-styled">
+                            <label>
+                              <input ng-change="updateSelectedStreets()"
+                                     type="checkbox"
+                                     ng-model="street.selected"><span></span>
+                            </label>
+                          </div>
+                        </td>
+                        <td class="streetsText">{{street | streetSingleLineFilter}}</td>
+                        <td class="stats-cell">
+                          <span uib-tooltip="Not prioritised" ng-if="street.priority === 0">
+                            <i class="md md-star empty-trophy icon-med"></i><i
+                            class="md md-star icon-med empty-trophy"></i><i
+                            class="md md-star icon-med empty-trophy"></i>
+                          </span>
+                          <span uib-tooltip="Low" ng-if="street.priority === 1">
+                            <i class="md md-star gold-trophy icon-med"></i><i
+                            class="md md-star icon-med empty-trophy"></i><i
+                            class="md md-star icon-med empty-trophy"></i>
+                          </span>
+                          <span uib-tooltip="Medium" ng-if="street.priority === 2">
+                            <i class="md md-star gold-trophy icon-med"></i><i
+                            class="md md-star icon-med gold-trophy"></i><i class="md md-star icon-med empty-trophy"></i>
+                          </span>
+                          <span uib-tooltip="High" ng-if="street.priority === 3">
+                            <i class="md md-star icon-med gold-trophy"></i><i
+                            class="md md-star icon-med gold-trophy"></i><i class="md md-star icon-med gold-trophy"></i>
+                          </span>
+                        </td>
+                        <td class="hidden-xs stats-cell">
+                          <span class="text-default text-xl"><span class="text-light" uib-tooltip="Voters Canvassed">{{street.numCanvassed}}</span> /
+                            <span uib-tooltip="Total Voters">{{street.numVoters}}</span>
+                            <span class="text-default-light text-light">({{getRatioCanvassed(street.numCanvassed, street.numVoters)}}%)</span></span>
+                        </td>
+                        <td class="text-center">
+                          <button uib-tooltip="Show in map" ng-click="onShowPopupMap(street)" type="button" class="btn btn-icon-toggle"><i
+                            class="fa icon-med fa-map-marker"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Confirm Save All modal -->
+<div class="modal fade" id="simpleModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Download Canvass Card</h4>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-callout alert-danger" role="alert">
+          <strong>Warning</strong> Downloading a large number of streets may take several minutes depending on the speed
+          of your internet connection. If possible please print selected streets instead.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" ng-click="onPrintAll()">
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="mapModal.html">
+  <div class="modal-header">
+    <h3 class="modal-title">{{mapData.street}}</h3>
+  </div>
+  <div class="modal-body">
+
+    <ui-gmap-google-map id="popupMap" ng-if="render" center='mapData.center' options="mapData.options" zoom='mapData.zoom'>
+      <ui-gmap-markers models="mapData.markers" coords="'self'" modelsbyref="false">
+        <ui-gmap-windows show="show">
+          <div ng-non-bindable>{{title}}</div>
+        </ui-gmap-windows>
+      </ui-gmap-markers>
+    </ui-gmap-google-map>
+
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-danger visible-xs pull-left" type="button" ng-click="cancel()">Close</a>
+    <a class="btn btn-danger hidden-xs" type="button" ng-click="cancel()">Close</a>
+  </div>
+</script>

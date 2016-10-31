@@ -1,0 +1,69 @@
+{
+  "results" : [
+    {
+      "address_components" : [
+        {
+          "long_name" : "Seven Kings Way",
+          "short_name" : "Seven Kings Way",
+          "types" : [ "route" ]
+        },
+        {
+          "long_name" : "Kingston upon Thames",
+          "short_name" : "Kingston upon Thames",
+          "types" : [ "locality", "political" ]
+        },
+        {
+          "long_name" : "Kingston upon Thames",
+          "short_name" : "Kingston upon Thames",
+          "types" : [ "postal_town" ]
+        },
+        {
+          "long_name" : "Greater London",
+          "short_name" : "Greater London",
+          "types" : [ "administrative_area_level_2", "political" ]
+        },
+        {
+          "long_name" : "United Kingdom",
+          "short_name" : "GB",
+          "types" : [ "country", "political" ]
+        },
+        {
+          "long_name" : "KT2",
+          "short_name" : "KT2",
+          "types" : [ "postal_code_prefix", "postal_code" ]
+        }
+      ],
+      "formatted_address" : "Seven Kings Way, Kingston upon Thames, Greater London KT2, UK",
+      "geometry" : {
+        "bounds" : {
+          "northeast" : {
+            "lat" : 51.4149489,
+            "lng" : -0.3030494
+          },
+          "southwest" : {
+            "lat" : 51.4134446,
+            "lng" : -0.3044288
+          }
+        },
+        "location" : {
+          "lat" : 51.4141163,
+          "lng" : -0.3032537
+        },
+        "location_type" : "GEOMETRIC_CENTER",
+        "viewport" : {
+          "northeast" : {
+            "lat" : 51.4155457302915,
+            "lng" : -0.3023901197084979
+          },
+          "southwest" : {
+            "lat" : 51.4128477697085,
+            "lng" : -0.305088080291502
+          }
+        }
+      },
+      "place_id" : "ChIJKy-pXOsLdkgRBWaZpW6v0yQ",
+      "types" : [ "route" ]
+    }
+  ],
+  "status" : "OK"
+}

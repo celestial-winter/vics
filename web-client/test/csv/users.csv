@@ -1,0 +1,4 @@
+username,first_name,last_name,write_access
+a@b.com,a,b,true
+me@you.com,me,you,true
+me@you.ne,me,you,false

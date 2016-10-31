@@ -1,0 +1,18 @@
+
+-- Material Design Iconic Font --
+
+license:     SIL OFL 1.1
+author:      Sergey Kupletsky
+url:         http://scripts.sil.org/OFL
+
+-- FontAwesome --
+
+license:     SIL OFL 1.1
+author:      Dave Gandy
+url:         http://scripts.sil.org/OFL
+
+-- GLYPHICONS Halflings --
+
+license:     The MIT License (MIT)
+author:      Jan Kovařík
+url:         http://glyphicons.com/

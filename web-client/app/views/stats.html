@@ -1,0 +1,96 @@
+<section>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">Stats</h2>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div>
+            <div class="col-sm-3">
+              <div class="card">
+                <div class="card-body no-padding">
+                  <div class="alert alert-callout alert-danger no-margin">
+                    <strong class="pull-right text-danger text-lg">
+                      {{totals.pledgesVoted / totals.voted * 100 | number:0}}%
+                    </strong>
+                    <strong class="text-xl">{{totals.pledgesVoted}} / {{totals.voted}}</strong><br/>
+                    <span class="opacity-50">Voted (Pledges/Total)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <stat-card count="{{totals.pledges}}" label="Pledges"></stat-card>
+            </div>
+            <div class="col-sm-3">
+              <stat-card count="{{adminStats.totalCanvassed}}" label="Canvassed"></stat-card>
+            </div>
+            <div class="col-sm-3">
+              <stat-card count="{{adminStats.canvassedThisWeek}}" label="Canvassed Past 7 days"></stat-card>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-head">
+            <header>Constituencies</header>
+            <div class="tools">
+              <span class="text-light">last updated: {{lastUpdated | date:'dd-MM-yyyy HH:mm:ss'}}</span>
+              <div class="btn-group">
+                <a ng-click="export()" class="btn btn-icon-toggle btn-refresh"><i
+                  class="md md-save"></i></a>
+                <a ng-click="refreshConstituencyStats()" class="btn btn-icon-toggle btn-refresh"><i
+                  class="md md-refresh"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="row-border hover" width="100%"></table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-head">
+            <header>Users</header>
+          </div>
+          <div class="card-body">
+            <table class="table table-condensed no-margin">
+              <thead>
+              <tr>
+                <th>Region</th>
+                <th># Users</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="stat in usersByRegionStats">
+                <td>{{stat[0]}}</td>
+                <td>{{stat[1]}}</td>
+              </tr>
+              <tr>
+                <td class="text-bold">Total</td>
+                <td class="text-bold">{{adminStats.users}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

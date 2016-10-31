@@ -1,0 +1,28 @@
+[
+  {
+    "ern": "E050097474-LFF-305-0",
+    "first_name": "John B",
+    "surname": "McCall",
+    "full_name": "McCall, John B",
+    "address": {
+      "udprn": 18133451,
+      "line_1": "Grange Farm House",
+      "line_2": "Crompton Lane",
+      "postcode": "CV4 6PL",
+      "post_town": "Coventry"
+    }
+  },
+  {
+    "ern": "E050097474-LFF-306-0",
+    "first_name": "Sarah N",
+    "surname": "McCall",
+    "full_name": "McCall, Sarah N",
+    "address": {
+      "udprn": 18133451,
+      "line_1": "Grange Farm House",
+      "line_2": "Crompton Lane",
+      "postcode": "CV4 6PL",
+      "post_town": "Coventry"
+    }
+  }
+]

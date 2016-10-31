@@ -1,0 +1,609 @@
+{
+  "stats": {},
+  "response": [
+    [
+      {
+        "udprn": 16251134,
+        "roll_house": "1",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "1",
+        "voters": [
+          {
+            "id": "2ddcc2b7-e3e7-414a-8ecf-8060fb1bf272",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": false,
+              "wants_postal": false,
+              "lift": false,
+              "deceased": true,
+              "inaccessible": true
+            },
+            "issues": {
+              "cost": false,
+              "sovereignty": true,
+              "border": false
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      },
+      {
+        "udprn": 16251135,
+        "roll_house": "2",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "2",
+        "voters": [
+          {
+            "id": "2ddcc2b7-e3e7-414a-8ecf-8060fb1bf272",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": false,
+              "wants_postal": false,
+              "lift": true,
+              "deceased": false,
+              "inaccessible": false
+            },
+            "issues": {
+              "cost": false,
+              "sovereignty": true,
+              "border": true
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      },
+      {
+        "udprn": 16251136,
+        "roll_house": "3",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "3",
+        "voters": [
+          {
+            "id": "2ddcc2b7-e3e7-414a-8ecf-8060fb1bf272",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": false,
+              "wants_postal": true,
+              "lift": false,
+              "deceased": true,
+              "inaccessible": false
+            },
+            "issues": {
+              "cost": true,
+              "sovereignty": true,
+              "border": false
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      },
+      {
+        "udprn": 16251137,
+        "roll_house": "4",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "4",
+        "voters": [
+          {
+            "id": "2ddcc2b7-e3e7-414a-8ecf-8060fb1bf272",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": false,
+              "wants_postal": false,
+              "lift": false,
+              "deceased": false,
+              "inaccessible": true
+            },
+            "issues": {
+              "cost": false,
+              "sovereignty": true,
+              "border": null
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      },
+      {
+        "udprn": 16251138,
+        "roll_house": "5",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "5",
+        "voters": [
+          {
+            "id": "2ddcc2b7-e3e7-414a-8ecf-8060fb1bf272",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": true,
+              "wants_postal": false,
+              "lift": false,
+              "deceased": false,
+              "inaccessible": false
+            },
+            "issues": {
+              "cost": false,
+              "sovereignty": true,
+              "border": null
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      },
+      {
+        "udprn": 16251139,
+        "roll_house": "6",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "6",
+        "voters": [
+          {
+            "id": "2ddcc2b7-e3e7-414a-8ecf-8060fb1bf272",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": false,
+              "wants_postal": false,
+              "lift": false,
+              "deceased": false,
+              "inaccessible": false
+            },
+            "issues": {
+              "cost": false,
+              "sovereignty": true,
+              "border": null
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      },
+      {
+        "udprn": 16251140,
+        "roll_house": "7",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "7",
+        "voters": [
+          {
+            "id": "2ddcc2b7-e3e7-414a-8ecf-8060fb1bf272",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": false,
+              "wants_postal": false,
+              "lift": false,
+              "deceased": false,
+              "inaccessible": false
+            },
+            "issues": {
+              "cost": false,
+              "sovereignty": true,
+              "border": null
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "udprn": 16246111,
+        "roll_house": "N P I L Pharmaceuticals Uk Ltd",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 3YA",
+        "premise": "",
+        "voters": [
+          {
+            "id": "125fca35-d48d-44e1-85d7-ea62e353e2a2",
+            "ward_code": "E05009131",
+            "prefix": "AB",
+            "number": "01",
+            "suffix": "1",
+            "roll_number": "E05009131-AB-01-1",
+            "title": "Mr",
+            "full_name": "John",
+            "initial": "",
+            "surname": "Deaux",
+            "attainment": "",
+            "voting": {
+              "intention": 5,
+              "last_intention": 5,
+              "likelihood": 4,
+              "last_likelihood": 4
+            },
+            "flags": {
+              "has_postal": false,
+              "wants_postal": false,
+              "lift": false,
+              "deceased": false,
+              "inaccessible": false
+            },
+            "issues": {
+              "cost": false,
+              "sovereignty": true,
+              "border": null
+            },
+            "contact": [
+              {
+                "contact_id": 123,
+                "contact_type": "canvass",
+                "activist_id": {},
+                "intention": 5,
+                "likelihood": 4,
+                "updated_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                },
+                "created_at": {
+                  "date": "2016-03-01 16:31:09.000000",
+                  "timezone_type": 3,
+                  "timezone": "UTC"
+                }
+              }
+            ],
+            "volunteer": {
+              "leaflets": true,
+              "poster": true,
+              "street_stall": true
+            },
+            "created_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            },
+            "updated_at": {
+              "date": "2016-03-01 16:31:09.000000",
+              "timezone_type": 3,
+              "timezone": "UTC"
+            }
+          }
+        ]
+      }
+    ]
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "voting": {
+    "intention": 3,
+    "likelihood": 3
+  },
+  "flags": {
+    "lift": false,
+    "deceased": false,
+    "inaccessible": false,
+    "poster": false,
+    "has_postal": true,
+    "wants_postal": false
+  },
+  "issues": {
+    "cost": false,
+    "sovereignty": false,
+    "border": false
+  },
+  "contact_type": "canvass",
+  "activist_id": "63f93970-d065-4fbb-8b9c-941e27ea53dc"
+}

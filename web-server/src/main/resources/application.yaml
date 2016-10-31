@@ -1,0 +1,70 @@
+
+# Application properties
+# All properties can be overriden at runtime by passing the variable into the environment,
+# e.g. java -Dserver.port=18080 -jar app.jar
+
+server:
+  context-path: /api/canvass
+  port: 18080
+  session:
+    timeout: 3600
+  compression:
+    enabled: true
+    mime-types: application/pdf
+
+spring:
+  application:
+    name: canvass
+    admin:
+      enabled: true
+  redis:
+    host: localhost
+    password: secret
+    port: 6379
+  datasource:
+    url: jdbc:postgresql://localhost:5432/canvassapp
+    username: postgres
+    password: postgres
+    driver: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+canvass:
+  cors:
+    hosts: "*"
+    methods:  "POST, GET, PUT, OPTIONS, DELETE"
+  pdfServerBaseUrl: http://localhost:18085/api/pdf
+  pafApiBaseUrl: https://PAF-935689129.eu-west-1.elb.amazonaws.com/v1/
+  pafApiToken: ""
+  pafApiTimeout: 60000
+  addressLookupBaseUrl: https://maps.googleapis.com/maps/api/
+  addressLookupToken: ""
+  sendGridKey: ""
+  passwordResetEndpoint: http://localhost:9000/#/newpassword
+  passwordResetExpirationMins: 120
+  passwordTokenExpiryDeletedUpdateInterval: 10
+  supportEmail: vicssupport@voteleave.uk
+  newAccountEmailSubject: "IMPORTANT - Welcome to your new Vote Leave canvassing account"
+  enableScheduling: true
+
+logging.level.: INFO
+logging.level:
+  com.infinityworks: DEBUG
+
+logstash:
+  port: 4560
+  url: localhost
+
+# port not exposed to outside
+management:
+  context-path: /admin
+  port: 18081
+  security:
+    enabled: false
+
+info:
+  app:
+    name: Canvass App
+    description: Voter Intention Collection System

@@ -1,0 +1,23 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "esnext": true,
+  "latedef": true,
+  "noarg": true,
+  "node": true,
+  "strict": false,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "angular": false,
+    "_": false,
+    "d3": false,
+    "jsPDF": false,
+    "$": false,
+    "saveAs": false,
+    "Egg": false,
+    "google": false
+  }
+}

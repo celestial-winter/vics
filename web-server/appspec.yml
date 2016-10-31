@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /tmp/
+hooks:
+  BeforeInstall:
+    - location: scripts/cleanupBeforeInstall.sh
+      runas: root
+  AfterInstall:
+    - location: scripts/createApplication.sh
+      runas: root
+  ApplicationStart:
+    - location: scripts/startApp.sh
+      runas: root
+  ApplicationStop:
+    - location: scripts/stopApp.sh
+      runas: root

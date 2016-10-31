@@ -1,0 +1,59 @@
+
+<!-- Choose Constituency -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-head">
+        <header>1. Choose a constituency</header>
+      </div>
+      <div class="card-body">
+        <div ng-if="constituencyNotSelectedError" class="alert alert-callout alert-danger" role="alert">
+          <strong>Error!</strong> Please choose a valid Constituency
+        </div>
+        <input type="text"
+               id="constituencyInputID"
+               ng-model="directiveModel.constituency"
+               placeholder="Type a constituency name"
+               typeahead="c as c.name for c in constituencies | filter:$viewValue | limitTo:10"
+               typeahead-on-select="onSelectConstituencyInternal()"
+               typeahead-loading="true"
+               class="form-control"
+               autocomplete="off">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Choose Wards -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" ng-show="wards.length" ng-class="{'card-disabled': loadingWards === true}">
+      <div class="card-head">
+        <header>2. Choose a ward</header>
+      </div>
+      <form ng-submit="onSearch()">
+        <div class="card-body">
+
+          <div ng-if="errorLoadingStreets" class="alert alert-callout alert-danger" role="alert">
+            <strong>Sorry!</strong> There we could not retrieve the streets from the server
+          </div>
+
+          <div ng-if="wardNotSelectedError" class="alert alert-callout alert-danger" role="alert">
+            <strong>Error!</strong> Please choose a valid Ward
+          </div>
+          <input type="text"
+                 id="wardInputID"
+                 typeahead-loading="loadingWards"
+                 ng-readonly="readOnlyWard"
+                 ng-disabled="allWards"
+                 ng-model="directiveModel.ward"
+                 placeholder="Type a ward name"
+                 typeahead="w as w.name for w in wards | filter:{name: $viewValue} | limitTo:10"
+                 typeahead-on-select="onSelectWardInternal()"
+                 class="form-control"
+                 autocomplete="off">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

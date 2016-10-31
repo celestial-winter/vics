@@ -1,0 +1,16 @@
+{
+  "voters": 8034,
+  "canvassed": 415,
+  "pledged": 211,
+  "voted": {
+    "total": 31,
+    "pledged": 12
+  },
+  "intention": {
+    "5": 0,
+    "4": 0,
+    "3": 0,
+    "2": 0,
+    "1": 0
+  }
+}

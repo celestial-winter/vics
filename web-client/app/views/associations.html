@@ -1,0 +1,191 @@
+<section>
+  <div class="row">
+    <div ng-if="errorLoadingData" class="alert alert-callout alert-danger" role="alert">
+      <strong>Oh Snap!</strong> Error loading data from server.
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">User Permissions</h2>
+      </div>
+      <div class="col-lg-8">
+        <article class="lead">
+          <p>
+            Associate users with wards, constituencies and permissions
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <!-- USER -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-head">
+            <header>User</header>
+          </div>
+          <div class="card-body">
+            <div class="input-group col-lg-12">
+              <div class="input-group-content">
+                <input type="text" class="form-control" id="readonly5" value="Readonly input" ng-model="user.username"
+                       readonly="">
+                <label for="readonly5">username</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Permissions -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-head">
+            <header>Permissions</header>
+          </div>
+          <div class="card-body">
+            <div ng-repeat="permission in permissions">
+              <div class="col-sm-3">
+                <label>{{permission.permission}}</label>
+                <switch ng-model="permission.active" ng-change="onChangePermission(permission)" class="red"></switch>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSTITUENCIES -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-head">
+            <header>Constituencies</header>
+          </div>
+          <div class="card-body">
+
+            <form class="form" ng-submit="onAddConstituency()">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button class="btn btn-success btn-sm" type="submit">
+                      ADD
+                    </button>
+                  </div>
+                  <div class="input-group-content">
+                    <input type="text"
+                           ng-change="onConstituencyInputKeypress()"
+                           id="constituencyInputID"
+                           placeholder="Type a constituency name"
+                           ng-model="constituencySearchModel"
+                           typeahead="c as c.name + ' (' + c.code + ')' for c in constituencies | filter:$viewValue | limitTo:8"
+                           typeahead-on-select="onSelectConstituency()"
+                           typeahead-loading="true"
+                           class="form-control" id="pw1">
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="alert alert-callout alert-danger" role="alert" ng-show="invalidConstituency">
+              <strong>{{constituencySearchModel}} is not a valid constituency</strong>
+            </div>
+
+            <table class="table no-margin table-hover" ng-show="user.constituencies.length">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="c in user.constituencies">
+                <td>{{$index + 1}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.code}}</td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-danger" tabindex="-1"
+                          ng-click="onDeleteConstituency(c.id)">DELETE
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <em class="text-caption">Grants access to all wards within the given constituencies</em>
+      </div>
+    </div>
+
+    <!-- WARDS -->
+    <div class="row">
+      <div class="col-md-12 associate-wards-tbl">
+        <div class="card">
+          <div class="card-head">
+            <header>Wards</header>
+          </div>
+          <div class="card-body">
+
+            <form class="form" ng-submit="onAddWard()">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button class="btn btn-success btn-sm" type="submit">
+                      ADD
+                    </button>
+                  </div>
+                  <div class="input-group-content">
+                    <input type="text"
+                           ng-change="onWardInputKeypress()"
+                           placeholder="Type a ward name"
+                           id="wardInputID"
+                           ng-model="wardSearchModel"
+                           typeahead="w as w.name + ' (' + w.code + ') in ' + w.constituency.name for w in wards | filter:$viewValue | limitTo:50"
+                           typeahead-on-select="onSelectConstituency()"
+                           typeahead-loading="true"
+                           class="form-control">
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <div class="alert alert-callout alert-danger" role="alert" ng-show="invalidWard">
+              <strong>{{wardSearchModel}} is not a valid ward</strong>
+            </div>
+
+            <table class="table no-margin table-hover associate-wards-tbl" ng-show="user.wards.length">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Constituency</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="c in user.wards">
+                <td>{{$index + 1}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.code}}</td>
+                <td>{{c.constituency.name}} ({{c.constituency.code}})</td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-danger" tabindex="-1" ng-click="onDeleteWard(c.id)">
+                    DELETE
+                  </button>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <em class="text-caption">Grants access to the given wards in addition to any wards associated by the above
+          constituencies</em>
+      </div>
+    </div>
+  </div>
+</section>

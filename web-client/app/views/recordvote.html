@@ -1,0 +1,228 @@
+<section ng-show="contentLoaded">
+  <br>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">Record Voted</h2>
+      </div>
+      <div class="col-lg-12">
+        <article class="lead">
+          <p>
+            Enter the ward code and elector ID from the canvass card. If you do not have this information,
+            search for the user by name and address.
+          </p>
+        </article>
+      </div>
+    </div>
+    <div class="row" ng-if="userHasNoAssociations">
+      <div class="col-sm-12">
+        <div class="alert alert-callout alert-warning" role="alert">
+          <strong>Warning!</strong> You do not have any wards associated with your account. This will prevent
+          you from interacting with parts of the application. Please contact your regional director to request access.
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-if="!userHasNoAssociations">
+      <div class="col-md-6 col-sm-12">
+
+        <div class="card">
+          <div class="card-head">
+            <header>Enter the Elector ID</header>
+            <div class="tools">
+              <div class="btn-group">
+                <a class="btn btn-icon-toggle btn-refresh" data-toggle="modal" data-target="#simpleModal"><i
+                  class="fa fa-question"></i></a>
+              </div>
+            </div>
+          </div><!--end .card-head -->
+          <div class="card-body">
+            <form class="form" ng-submit="onVote()">
+              <div class="form-group">
+
+                <label for="selectWard">Ward</label>
+                <select id="selectWard" class="form-control"
+                  ng-model="formModel.selectedWard"
+                  ng-options="ward.name + ' in ' + ward.constituencyName for ward in wards">
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <div class="input-group">
+                  <div class="input-group-content ern-spacing">
+                    <input id="electorId" type="text" class="form-control" ng-model="formModel.ern.pollingDistrict" uppercased>
+                    <label for="electorId"><span class="hidden-sm hidden-xs hidden-md">Polling </span>District</label>
+                  </div>
+
+                  <div class="input-group-content ern-spacing">&mdash;</div>
+
+                  <div class="input-group-content ern-spacing">
+                    <input id="electorNum" type="number" class="form-control" ng-model="formModel.ern.number">
+                    <label for="electorNum">Number</label>
+                  </div>
+
+                  <div class="input-group-content ern-spacing">&mdash;</div>
+
+                  <div class="input-group-content">
+                    <input id="electorSuffix" type="text" class="form-control" ng-model="formModel.ern.suffix" uppercased>
+                    <label for="electorSuffix">Suffix</label>
+                  </div>
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-success btn-sm" tabindex="-1">VOTED</button>
+                  </div>
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-danger btn-sm" ng-click="onWontVote()" tabindex="-1">WON'T<span class="hidden-xs"> VOTE</span></button>
+                  </div>
+                </div>
+                <br>
+                <div class="alert alert-callout alert-danger" role="alert" ng-show="invalidErn">
+                  <p>
+                    <i class="fa fa-warning"></i> &nbsp;Invalid Elector ID. <a class="btn btn-icon-toggle btn-refresh" data-toggle="modal" data-target="#simpleModal"><i
+                    class="fa fa-question"></i></a>
+                  </p>
+                </div>
+                <div class="alert alert-callout alert-danger" role="alert" ng-show="invalidWard">
+                  <p>
+                    <i class="fa fa-warning"></i> &nbsp;Ward is not selected
+                  </p>
+                </div>
+
+              </div>
+            </form>
+            <br>
+            <table class="table no-margin table-hover">
+              <thead>
+              <tr>
+                <th>Elector ID</th>
+                <th>Comment</th>
+                <th>Result</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="log in logs.elements.slice().reverse()"
+                  ng-class="{danger: log.result === 0, success: log.result === 1}">
+                <td>{{log.ern}}</td>
+                <td>{{log.reason}}</td>
+                <td ng-show="log.result === 1">SUCCESS</td>
+                <td ng-show="log.result === 0">FAILED</td>
+                <td ng-show="log.result === -1">-</td>
+                <td>
+                  <button class="btn btn-sm btn-danger pull-right" ng-click="onUndoVoted(log)" ng-show="log.reason === 'Voted'">UNDO</button>
+                  <button class="btn btn-sm btn-danger pull-right" ng-click="onUndoWontVote(log)" ng-show="log.reason === 'Won\'t vote'">UNDO</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div><!--end .card-body -->
+        </div><!--end .card -->
+      </div><!--end .col -->
+      <div class="col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-head card-head-xs style-primary">
+            <header>Search within {{formModel.selectedWard.name + ' in ' + formModel.selectedWard.constituencyName}}</header>
+          </div>
+          <div class="card-body">
+
+            <form class="form" ng-submit="onSearchVoter()">
+              <div class="form-group">
+                <div class="input-group col-xs-12">
+                  <div class="input-group-content">
+                    <input type="text" ng-model="searchForm.surname" class="form-control ocl" id="groupbutton10">
+                    <label for="groupbutton10">Surname</label>
+                    <p ng-show="invalidSurname" class="validation-error">Please enter a surname</p>
+                  </div>
+                </div>
+                <span>
+                  <em class="text-caption">Search by full or partial surname, e.g. <code>fletch</code> or <code>fletcher</code></em>
+                </span>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-content">
+                    <input type="text" ng-model="searchForm.postcode" class="form-control" id="doublegroupbutton10" uppercased>
+                    <label for="doublegroupbutton10">Postcode</label>
+                    <p ng-show="invalidPostcode" class="validation-error">Please enter a postcode</p>
+                  </div>
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-danger btn-sm" tabindex="-1">SEARCH</button>
+                  </div>
+                </div>
+                <span>
+                  <em class="text-caption">Search by full or partial postcode, e.g. <code>KT2</code> or <code>KT2 5BU</code></em>
+                </span>
+              </div>
+            </form>
+
+            <!-- Search results empty -->
+            <div ng-show="searchResults.length === 0">
+              <span class="text-light text-danger">No results</span>
+            </div>
+
+            <!-- Search results -->
+            <table class="table no-margin table-hover" ng-show="searchResults.length">
+              <thead>
+              <tr>
+                <th>Roll #</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="voter in searchResults">
+                <td style="min-width: 100px">{{voter.ern | ernToShortForm}}</td>
+                <td>{{voter.full_name}}</td>
+                <td>{{voter | voterAddressFormat }}</td>
+                <td><button type="submit" class="btn btn-sm btn-danger" tabindex="-1"
+                            ng-click="onSetSearchedVoter(voter)">
+                  Set
+                </button></td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <em class="text-caption">To search voters within a different ward, select the ward in the dropdown in the 'Enter Elector ID' section</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Elector ID modal -->
+<div class="modal fade" id="simpleModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Elector ID explained</h4>
+      </div>
+      <div class="modal-body">
+        <p>The Elector ID is a compound ID that uniquely identifiers an elector within a given ward. This ID is created
+          by the application and is printed on the right column of the canvass card.
+        </p>
+        <br>
+        <p class="text-center text-xxxl">BA-412-2</p>
+        <p>Where</p>
+        <p>
+        <dl class="dl-horizontal">
+          <dt>BA</dt>
+          <dd>Polling district</dd>
+
+          <dt>412</dt>
+          <dd>Elector ID</dd>
+
+          <dt>2</dt>
+          <dd>Elector Suffix</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

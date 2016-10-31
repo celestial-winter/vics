@@ -1,0 +1,112 @@
+<!-- BEGIN PROFILE HEADER -->
+<section class="full-bleed">
+  <div class="section-body style-default-dark force-padding text-shadow">
+    <div class="img-backdrop" style="background-image: url('images/img16.jpg')"></div>
+    <div class="overlay overlay-shade-top stick-top-left height-3"></div>
+    <div class="row">
+      <div class="col-md-3 col-xs-5">
+        <h3>{{user.username}}<br/><small>Role: {{user.role}}</small></h3>
+      </div><!--end .col -->
+      <div class="col-md-9 col-xs-7">
+
+      </div><!--end .col -->
+    </div><!--end .row -->
+  </div><!--end .section-body -->
+</section>
+<!-- END PROFILE HEADER  -->
+
+<script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
+<script>var egg = new Egg();
+egg.addCode("up,up,down,down,left,right,left,right,b,a", function () {
+    jQuery('#egggif').fadeIn(500, function () {
+      window.setTimeout(function () {
+        jQuery('#egggif').hide();
+      }, 5000);
+    });
+  })
+  .addHook(function () {
+    $('#egg').show();
+    $('.game').blockrain();
+    $('.game').blockrain('controls', true);
+  }).listen();
+</script>
+
+<section>
+  <div class="section-body contain-lg">    <!-- BEGIN DEFAULT TABLE -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">Constituencies</h2>
+      </div><!--end .col -->
+      <div class="col-lg-12">
+      </div><!--end .col -->
+      <div class="col-lg-3 col-md-4">
+        <article class="margin-bottom-xxl">
+          <p>
+            You can access the following constituencies and any wards within these constituencies
+          </p>
+        </article>
+      </div><!--end .col -->
+      <div class="col-lg-offset-1 col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <table class="table no-margin">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Name</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="c in user.constituencies">
+                <td>{{$index + 1}}</td>
+                <td>{{c.code}}</td>
+                <td>{{c.name}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div><!--end .card-body -->
+        </div><!--end .card -->
+      </div><!--end .col -->
+    </div><!--end .row -->
+    <!-- END DEFAULT TABLE -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">Wards</h2>
+      </div><!--end .col -->
+      <div class="col-lg-12">
+      </div><!--end .col -->
+      <div class="col-lg-3 col-md-4">
+        <article class="margin-bottom-xxl">
+          <p>
+            You can access the following wards in addition to any wards associated by the above constituencies
+          </p>
+        </article>
+      </div><!--end .col -->
+      <div class="col-lg-offset-1 col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <table class="table no-margin">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Name</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="w in user.wards">
+                <td>{{$index + 1}}</td>
+                <td>{{w.code}}</td>
+                <td>{{w.name}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div><!--end .card-body -->
+        </div><!--end .card -->
+      </div><!--end .col -->
+    </div><!--end .row -->
+    <!-- END DEFAULT TABLE -->
+  </div>
+</section>

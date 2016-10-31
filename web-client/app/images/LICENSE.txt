@@ -1,0 +1,122 @@
+
+-- img1.jpg --
+
+license:     Public Domain CC0
+author:      hansiline
+url:         http://pixabay.com/fr/varigotti-italie-plage-de-vacances-207034/
+
+-- img2.jpg --
+
+license:     Public Domain CC0
+author:      PDPhotos
+url:         http://pixabay.com/nl/boten--s-avonds-nacht-verlichting-3727/
+
+-- img3.jpg --
+
+license:     Public Domain CC0
+author:      eacuna
+url:         http://pixabay.com/nl/ipanema-beach-rio-de-janeiro-99388/
+
+-- img4.jpg --
+
+license:     Public Domain CC0
+author:      WikiImages
+url:         http://pixabay.com/nl/stad-gebouw-nacht-uitzicht-nacht-11087/
+
+-- img5.jpg --
+
+license:     Public Domain CC0
+author:      tpsdave
+url:         http://pixabay.com/nl/park-zion-utah-bergen-landschap-139012/
+
+-- img6.jpg --
+
+license:     Public Domain CC0
+author:      Simon
+url:         http://pixabay.com/nl/india-varenblad-palm-zie-boot-337/
+
+-- img7.jpg --
+
+license:     Public Domain CC0
+author:      WikiImages
+url:         http://pixabay.com/nl/keizerspingu%C3%AFn-penguin-62982/
+
+-- img8.jpg --
+
+author:      AntonioGuillem
+url:         http://photodune.net/item/facial-portrait-of-an-attractive-adult-man/6364232
+
+
+-- img8.jpg --
+
+author:      AntonioGuillem
+url:         http://photodune.net/item/facial-portrait-of-an-attractive-adult-man/6364232
+
+-- img9.jpg --
+
+license:     Public Domain CC0
+author:      sardenacarlo
+url:         http://pixabay.com/en/coffee-caffeine-cup-of-coffee-steel-106986/
+
+-- img10.jpg --
+
+license:     Public Domain CC0
+author:      Unsplash
+url:         http://pixabay.com/en/home-office-workstation-office-336373/
+
+
+-- img11.jpg --
+
+license:     Public Domain CC0
+author:      pattyjansen
+url:         http://pixabay.com/en/clovelly-sydney-australia-ocean-323447/
+
+
+-- img12.jpg --
+
+license:     Public Domain CC0
+author:      tpsdave
+url:         http://pixabay.com/en/san-francisco-california-city-210230/
+
+-- img13.jpg --
+
+license:     Public Domain CC0
+author:      193584
+url:         http://pixabay.com/en/real-estate-architecture-home-house-325285/
+
+-- img14.jpg --
+
+license:     Public Domain CC0
+author:      Hans
+url:         http://pixabay.com/en/ski-tour-winter-hike-hike-winter-16154/
+
+-- img15.jpg --
+
+license:     Public Domain CC0
+author:      Unsplash
+url:         http://pixabay.com/en/forest-fog-mist-morning-conifers-438388/
+
+-- img16.jpg --
+
+license:     Public Domain CC0
+author:      acemiel67888
+url:         http://pixabay.com/en/panorama-office-buildings-ayala-433610/
+
+
+-- avatar1.jpg --
+
+author:      AntonioGuillem
+url:         http://photodune.net/item/facial-portrait-of-an-attractive-adult-man/6364232
+
+-- avatar2.jpg --
+
+license:     Public Domain CC0
+author:      tpsdave
+url:         http://pixabay.com/nl/park-zion-utah-bergen-landschap-139012/
+
+-- avatar3.jpg --
+
+license:     Public Domain CC0
+author:      WikiImages
+url:         http://pixabay.com/nl/keizerspingu%C3%AFn-penguin-62982/
+

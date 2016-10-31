@@ -1,0 +1,46 @@
+server:
+  context-path: /api/canvass
+  port: 8090
+  session:
+    timeout: 5000
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    driver: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/canvassapp
+    username: postgres
+    password: postgres
+    pool-name: HikariPool
+    min-idle: 3
+    pool-prepared-statements: true
+    max-open-prepared-statements: 250
+    maximumPoolSize: 10
+
+canvass:
+  cors:
+    hosts: "*"
+    methods:  "POST, GET, PUT, OPTIONS, DELETE"
+  pdfServerBaseUrl: http://localhost:18089/api/pdf
+  pafApiBaseUrl: http://localhost:9002/v1/
+  pafApiToken: token
+  pafApiTimeout: 30000
+  addressLookupBaseUrl: https://maps.googleapis.com/maps/api/
+  addressLookupToken: ""
+  sendGridKey: ""
+  passwordResetEndpoint: http://localhost:9000/#/resetpassword
+  passwordResetExpirationMins: 120
+  passwordTokenExpiryDeletedUpdateInterval: 10
+  newAccountEmailSubject: "Welcome to you new Vote Leave canvassing account"
+  enableScheduling: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.zaxxer.hikari.HikariConfig: ERROR
+    com.infinityworks.webapp: TRACE
+    org.hibernate.SQL: ERROR
+    org.hibernate.type: ERROR

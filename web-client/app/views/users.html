@@ -1,0 +1,296 @@
+<section>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">User Management</h2>
+      </div>
+      <div class="col-lg-8">
+        <article class="lead">
+          <p>
+            Create, delete and modify users.
+          </p>
+        </article>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="row" ng-if="editMode">
+
+          <div class="card ">
+            <div class="card-head">
+              <header>Edit User</header>
+            </div>
+            <div class="card-body">
+              <form class="form form-validate" novalidate="novalidate" ng-submit="onEditUser(editUser)">
+
+                <div class="alert alert-callout alert-danger" role="alert"
+                     ng-show="editErrors.length || userExistsError">
+                  <strong>Please correct form values</strong>
+                  <p ng-repeat="error in editErrors">
+                    <i class="fa fa-warning"></i> &nbsp;{{error}}
+                  </p>
+                  <p ng-show="userExistsError">
+                    <i class="fa fa-warning"></i> &nbsp;User {{editUser.username}} already exists
+                  </p>
+                </div>
+                <div class="form-group">
+                  <input type="email" ng-model="editUser.username" class="form-control" id="edusername"
+                         name="edusername"
+                         required>
+                  <label for="edusername">Email</label>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="editUser.firstName" id="edfname" name="edfname"
+                         required>
+                  <label for="edfname">First Name</label>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="editUser.lastName" id="edlname" name="edlname"
+                         required>
+                  <label for="edlname">Last Name</label>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button class="btn btn-sm btn-success" type="button" ng-click="randomPassword(editUser)">
+                        Generate
+                      </button>
+                    </div>
+                    <div class="input-group-content">
+                      <input type="text" class="form-control" name="editpw1" ng-model="editUser.password" id="editpw1"
+                             data-rule-min="8" data-rule-max="50" required ng-disabled="true">
+                      <label for="editpw1">Password</label>
+                      <p class="help-block">Leave empty to keep existing password</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="editUser.repeatPassword" id="editpw2" name="editpw2"
+                         data-rule-min="8" data-rule-max="50" required ng-disabled="true">
+                  <label for="editpw2">Repeat Password</label>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox checkbox-styled">
+                    <label>
+                      <input type="checkbox" name="terms1" ng-model="editUser.writeAccess" required>
+                      <span>Write access</span>
+                    </label>
+                  </div>
+                </div>
+
+              </form>
+            </div><!--end .card-body -->
+            <div class="card-actionbar">
+              <div class="card-actionbar-row">
+                <button type="submit" class="btn btn-sm btn-primary" ng-click="onCancelEdit()">CANCEL
+                </button>
+                <button type="submit" class="btn btn-sm btn-danger" ng-click="onSaveEdit(editUser)">SAVE
+                </button>
+              </div>
+            </div>
+          </div><!--end .card -->
+        </div>
+
+        <div class="row" ng-if="!editMode && createUserMode">
+
+          <form class="form form-validate" novalidate="novalidate" ng-submit="onCreateUser(createUserModel)">
+            <div class="card ">
+              <div class="card-head">
+                <header>Create a User</header>
+              </div>
+              <div class="card-body">
+                <div class="alert alert-callout alert-danger" role="alert"
+                     ng-show="validationErrors.length || userExistsError">
+                  <strong>Please correct form values</strong>
+                  <p ng-repeat="error in validationErrors">
+                    <i class="fa fa-warning"></i> &nbsp;{{error}}
+                  </p>
+                  <p ng-show="userExistsError">
+                    <i class="fa fa-warning"></i> &nbsp;User {{createUserModel.username}} already exists
+                  </p>
+                </div>
+                <div class="alert alert-callout alert-success" role="alert" ng-show="successfullyCreatedUser">
+                  <strong>Success</strong> Created user {{createdUserEmail}}
+                </div>
+                <div class="form-group">
+                  <input type="email" ng-model="createUserModel.username" class="form-control" id="minmax2"
+                         name="minmax2"
+                         required>
+                  <label for="minmax2">Email</label>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="createUserModel.firstName" id="fname" name="fname"
+                         required>
+                  <label for="fname">First Name</label>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="createUserModel.lastName" id="lname" name="lname"
+                         required>
+                  <label for="lname">Last Name</label>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button class="btn btn-sm btn-success" type="button"
+                              ng-click="randomPassword(createUserModel)">Generate
+                      </button>
+                    </div>
+                    <div class="input-group-content">
+                      <input type="text" class="form-control" name="pw1" ng-model="createUserModel.password" id="pw1"
+                             data-rule-min="12" data-rule-max="50" required ng-disabled="true">
+                      <label for="pw1">Password</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="createUserModel.repeatPassword" id="pw2" name="pw2"
+                         data-rule-min="8" data-rule-max="50" required ng-disabled="true">
+                  <label for="pw2">Repeat Password</label>
+                </div>
+
+                <!-- Write access -->
+                <div class="form-group">
+                  <div class="checkbox checkbox-styled">
+                    <label>
+                      <input type="checkbox" name="terms1" ng-model="createUserModel.writeAccess" required>
+                      <span>Write access</span>
+                    </label>
+                  </div>
+                </div>
+              </div><!--end .card-body -->
+              <div class="card-actionbar">
+                <div class="card-actionbar-row">
+                  <button type="button" class="btn btn-sm btn-primary" ng-click="setCreateUserMode(false)">
+                    CANCEL
+                  </button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-click="onCsvUpload()">CSV UPLOAD
+                  </button>
+                  <button type="submit" class="btn btn-sm btn-danger">CREATE USER</button>
+                </div>
+              </div>
+            </div><!--end .card -->
+          </form>
+        </div>
+
+
+        <div class="col-lg-12">
+          <div class="alert alert-callout alert-danger" role="alert" ng-show="deleteUserFailed">
+            <strong>Failed to delete user</strong> check the response or server log for errors.
+          </div>
+        </div>
+
+        <div ng-if="!createUserMode && !editMode" class="row">
+          <div class="col-lg-12">
+            <div class="card">
+
+              <!-- BEGIN SEARCH BAR -->
+              <div class="card-body style-gray-dark no-y-padding">
+                <form class="form form-inverse">
+                  <div class="form-group">
+                    <div class="input-group input-group-lg col-xs-12">
+                      <div class="input-group-content">
+                        <input type="text" class="form-control" ng-model="userSearch" id="searchInput" placeholder="Search Users">
+                        <div class="form-control-line"></div>
+                      </div>
+                    </div>
+                  </div><!--end .form-group -->
+                </form>
+              </div><!--end .card-body -->
+              <!-- END SEARCH BAR -->
+              <div class="card-body">
+
+                <div class="card-actionbar">
+                  <div class="card-actionbar-row">
+                    <button type="button" ng-click="setCreateUserMode(true)" class="btn btn-sm btn-danger">CREATE
+                      USER
+                    </button>
+                  </div>
+                </div>
+
+                <table class="table table-hover no-margin">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th class="stats-cell hidden-xs">Role</th>
+                    <th class="stats-cell hidden-xs">Canvassed</th>
+                    <th class="stats-cell hidden-xs">Last Login</th>
+                    <th class="stats-cell hidden-xs">Write Access</th>
+                    <th class="stats-cell">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="user in users | filter:userSearch">
+                    <td>{{$index + 1}}</td>
+                    <td>{{user.username}}</td>
+                    <td>
+                      {{user.lastName}}
+                    </td>
+                    <td>
+                      {{user.firstName}}
+                    </td>
+                    <td class="stats-cell hidden-xs">
+                      <i ng-if="user.role === 'ADMIN'" class="fa fa-2x icon-med fa-shield text-warning"
+                         uib-tooltip="Admin user"></i>
+                      <i ng-if="user.role === 'USER'" class="fa icon-med fa-user" uib-tooltip="Basic User"></i>
+                    </td>
+                    <td class="stats-cell hidden-xs">
+                      {{user.canvassed}}
+                    </td>
+                    <td class="stats-cell hidden-xs">
+                      {{user.lastLogin | date:'dd-MM-yyyy HH:mm:ss'}}
+                    </td>
+                    <td class="stats-cell hidden-xs">
+                      <i ng-if="user.writeAccess" class="fa fa-check icon-med text-success"></i>
+                      <i ng-if="!user.writeAccess" class="fa fa-remove icon-med text-danger"></i>
+                    </td>
+                    <td class="stats-cell">
+                      <a ng-href="#/associations/{{user.id}}" type="button" class="btn btn-icon-toggle"
+                         uib-tooltip="Permissions"><i
+                        class="fa fa-sitemap icon-med"></i></a>
+                      <a ng-if="user.role === 'USER'" ng-click="onEditUser(user.id)" type="button"
+                         class="btn btn-icon-toggle" uib-tooltip="Edit"><i class="fa fa-pencil icon-med"></i></a>
+                      <a ng-if="user.role === 'USER'" ng-click="preDeleteUser(user)" type="button"
+                         class="btn btn-icon-toggle" data-toggle="modal" data-target="#simpleModal" data-placement="top"
+                         data-original-title="Delete" uib-tooltip="Delete"><i class="fa fa-remove icon-med "></i></a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div><!--end .card-body -->
+            </div><!--end .card -->
+          </div>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRM DELETE MODAL -->
+<div class="modal fade" id="simpleModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Delete User</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Delete {{userToDelete.username}}. Are you sure?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"
+                ng-click="onConfirmDeleteUser(userToDelete)">
+          Delete
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

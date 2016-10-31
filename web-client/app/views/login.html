@@ -1,0 +1,87 @@
+<section>
+  <div class="section-header">
+    <ol class="breadcrumb">
+      <li class="active">Login</li>
+    </ol>
+  </div>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <br/>
+        <br/><br/>
+        <form class="form" accept-charset="utf-8" ng-submit="login()">
+          <div class="form-group">
+            <input type="text" class="form-control" id="username" name="username" ng-model="credentials.username"
+                   required>
+            <label for="username">Username/Email address</label>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password">
+            <label for="password">Password</label>
+            <p class="help-block"><a ng-href="#/resetpassword">Reset Password</a>
+            </p>
+          </div>
+          <div class="alert alert-callout alert-danger" role="alert" ng-show="badCredentials">
+            <strong>Invalid Credentials</strong>
+            <p>Please retry or click <a ng-href="#/resetpassword">here</a>
+              to renew your password</p>
+          </div>
+          <div class="alert alert-callout alert-danger" role="alert" ng-show="networkError">
+            <strong>Sorry</strong> we cannot connect to the server right now. Please try again later.
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-xs-6 text-left">
+            </div><!--end .col -->
+            <div class="col-xs-6 text-right">
+              <button class="btn btn-danger btn-sm" type="submit">Login</button>
+            </div><!--end .col -->
+          </div><!--end .row -->
+        </form>
+      </div><!--end .col -->
+      <div class="col-sm-5 col-sm-offset-1 text-center">
+        <br><br>
+        <h3 class="text-light">
+          No account yet?
+        </h3>
+        <a class="btn btn-block btn-danger btn-sm" ng-href="mailto:{{supportEmail}}?Subject=Request%20Access"
+           target="_blank">Request access</a>
+      </div><!--end .col -->
+    </div><!--end .row -->
+  </div><!--end .card-body -->
+</section>
+
+<div id="egg" class="egg" style="display:none; text-align: center">
+  <br>
+  <br>
+  <button id="closeBtn" type="button" ng-click="onCloseEgg()" class="btn btn-sm btn-danger">close</button>
+  <div class="game game-center blockrain-game-holder" style="position: relative; width: 250px; height: 350px;">
+    <canvas
+      style="margin:0; display: block; width: 100%; height: 100%; padding: 0px; border: none; background-color: rgb(0, 0, 0);"
+      width="200" height="320">
+    </canvas>
+    <div class="blockrain-score-holder" style="position: absolute; display: none;">
+      <div class="blockrain-score">
+        <div class="blockrain-score-msg">Score</div>
+        <div class="blockrain-score-num">0</div>
+      </div>
+    </div>
+    <div class="blockrain-start-holder" style="position: absolute;">
+      <div class="blockrain-start">
+        <div class="blockrain-start-msg">Let's play some Tetris</div>
+        <a class="blockrain-btn blockrain-start-btn">Play</a></div>
+    </div>
+    <div class="blockrain-game-over-holder" style="position: absolute; display: none;">
+      <div class="blockrain-game-over">
+        <div class="blockrain-game-over-msg">Game Over</div>
+        <a class="blockrain-btn blockrain-game-over-btn">Play Again</a></div>
+    </div>
+    <a class="blockrain-touch blockrain-touch-left" style="display: none;"></a><a
+    class="blockrain-touch blockrain-touch-right" style="display: none;"></a><a
+    class="blockrain-touch blockrain-touch-rotate-right" style="display: none;"></a><a
+    class="blockrain-touch blockrain-touch-rotate-left" style="display: none;"></a><a
+    class="blockrain-touch blockrain-touch-drop" style="display: none;"></a>
+  </div>
+  <br>
+</div>
+

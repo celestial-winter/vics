@@ -1,0 +1,7 @@
+{
+  "success": {
+    "code": "GEN-SUCCESS",
+    "http_code": 200,
+    "message": "Vote deleted"
+  }
+}

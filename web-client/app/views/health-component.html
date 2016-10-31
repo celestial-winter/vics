@@ -1,0 +1,30 @@
+<div class="col-md-3 col-sm-6">
+    <div class="card">
+        <div class="card-body no-padding">
+            <div class="alert alert-callout alert-success no-margin">
+                <strong ng-if="health.db.status === 'UP'" class="pull-right text-success text-lg">{{health.db.status}}<i class="md md-check"></i></strong>
+                <strong ng-if="health.db.status === 'DOWN'" class="pull-right text-danger text-lg">{{health.db.status}}<i class="md md-error"></i></strong>
+                <strong ng-if="!health.db.status" class="pull-right text-default text-lg">{{health.db.status}}<i></i></strong>
+                <strong class="text-xl">{{health.db.database}}</strong><br/>
+                <span class="opacity-50">Database</span>
+                <div class="stick-bottom-left-right">
+                    <div class="height-2 sparkline-revenue" data-line-color="#bdc1c1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3 col-sm-6">
+    <div class="card">
+        <div class="card-body no-padding">
+            <div class="alert alert-callout alert-success no-margin">
+                <strong class="text-xl">{{health.diskSpace.free | bytesToMegaBytes}}</strong><br/>
+                <span class="opacity-50">Disk Space</span>
+                <div class="stick-bottom-right">
+                    <div class="height-1 sparkline-visits" data-bar-color="#e5e6e6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

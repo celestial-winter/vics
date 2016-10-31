@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>webapp</artifactId>
+    <groupId>com.infinityworks</groupId>
+    <version>0.0.1</version>
+  </parent>
+
+  <artifactId>web-client</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>0.0.28</version>
+
+        <executions>
+
+          <execution>
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>v5.0.0</nodeVersion>
+              <npmVersion>3.3.9</npmVersion>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>bower install</id>
+            <goals>
+              <goal>bower</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>grunt build</id>
+            <goals>
+              <goal>grunt</goal>
+            </goals>
+            <configuration>
+              <arguments>--no-color</arguments>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+      <!-- copy the built files to the staging area, so it can be deployed later by the assembly plugin -->
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>process-resources</phase>
+            <configuration>
+              <tasks>
+                <copy todir="${project.basedir}/../dist/client">
+                  <fileset dir="${project.basedir}/dist/">
+                    <include name="**/*"/>
+                  </fileset>
+                </copy>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>replace-api-url</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <tasks>
+                <replace token="apiUrl:&quot;http://localhost:18080/api/canvass" value="apiUrl:&quot;CANVASS_API_ELB_ENDPOINT" dir="${project.basedir}/../dist/client/scripts">
+                  <include name="scripts.*.js"/>
+                </replace>
+                <replace token="pdfApiUrl:&quot;http://localhost:18080/api/canvass" value="pdfApiUrl:&quot;CANVASS_API_PDF_ELB_ENDPOINT" dir="${project.basedir}/../dist/client/scripts">
+                  <include name="scripts.*.js"/>
+                </replace>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

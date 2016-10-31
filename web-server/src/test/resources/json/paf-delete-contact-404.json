@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "GEN-NOT-FOUND",
+    "http_code": 404,
+    "message": "Contact record not found"
+  }
+}

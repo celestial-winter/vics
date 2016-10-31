@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "GEN-UNPROCESSABLE-ENTITY",
+    "http_code": 422,
+    "message": "Invalid contact record ID provided"
+  }
+}

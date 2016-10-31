@@ -1,0 +1,186 @@
+<section>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-primary">CSV Upload</h2>
+      </div>
+      <div class="col-lg-12">
+        <article class="lead">
+          <p>Add users and associations by importing a csv file</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- BEGIN FILE UPLOAD -->
+    <div class="row">
+
+      <!-- BEGIN LAYOUT JUSTIFIED -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-head">
+            <ul class="nav nav-tabs " data-toggle="tabs">
+              <li ng-class="{'tab-pane': true, 'active': currentTab === 'users'}">
+                <a class="cursor-hand" ng-click="scrollTo('users')">Users</a>
+              </li>
+              <li ng-class="{'tab-pane': true, 'active': currentTab === 'constituencies'}"><a class="cursor-hand"
+                                                                                              ng-click="scrollTo('constituencies')">Constituencies</a>
+              </li>
+              <li ng-class="{'tab-pane': true, 'active': currentTab === 'wards'}">
+                <a class="cursor-hand" ng-click="scrollTo('wards')">Wards</a>
+              </li>
+            </ul>
+          </div><!--end .card-head -->
+          <div class="card-body tab-content">
+            <div id="first4" ng-if="currentTab === 'users'">
+
+              <div>
+                <p>Upload a CSV file in the format:
+                <pre>username,first_name,last_name,write_access<br>me@you.com,you,me,true<br>thom@borwick.com,thom,borwick,false</pre>
+                <br>
+
+                <ng-csv-import content="csvUser.content"
+                               header="csvUser.header"
+                               separator="csvUser.separator"
+                               result="csvUser.result"
+                               callback="csvUser.callback"
+                               accept="csvUser.accept">
+                </ng-csv-import>
+
+                <div class="block" ng-if="csvUser.result">
+
+                  <div class="btn-group pull-right">
+                    <button type="button" class="btn-separator btn btn-sm btn-danger" ng-click="onCreateUsers()">
+                      CREATE USERS
+                    </button>
+                  </div>
+
+                  <table class="table no-margin">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Username</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Write Access</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in csvUser.result">
+                      <td>{{$index + 1}}</td>
+                      <td>{{row.username}}</td>
+                      <td>{{row.first_name}}</td>
+                      <td>{{row.last_name}}</td>
+                      <td>{{row.write_access}}</td>
+                      <td>{{row.outcome}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            <div id="second4" ng-if="currentTab === 'constituencies'">
+
+              <div>
+                <p>Upload a CSV file in the format:
+                <pre>username,constituency_code<br>me@you.com,E09001234<br>thom@borwick.com,C1230012</pre>
+                <br>
+
+                <ng-csv-import content="csvConstituencies.content"
+                               header="csvConstituencies.header"
+                               separator="csvConstituencies.separator"
+                               result="csvConstituencies.result"
+                               callback="csvConstituencies.callback"
+                               accept="csvConstituencies.accept">
+                </ng-csv-import>
+
+                <div class="block" ng-if="csvConstituencies.result">
+
+                  <button type="button" class="btn btn-sm btn-danger pull-right"
+                          ng-click="onAssociateConstituencies()">
+                    Associate Constituencies
+                  </button>
+
+                  <table class="table no-margin">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Username</th>
+                      <th>Constituency Code</th>
+                      <th>Success</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in csvConstituencies.result">
+                      <td>{{$index + 1}}</td>
+                      <td>{{row.username}}</td>
+                      <td>{{row.constituency_code}}</td>
+                      <td>{{row.outcome}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+
+            </div>
+
+            <div id="third4" ng-if="currentTab === 'wards'">
+              <div>
+                <p>Upload a CSV file in the format:
+                <pre>username,ward_code<br>me@you.com,E09114201<br>thom@borwick.com,S8760444</pre>
+                <br>
+
+                <ng-csv-import content="csvWards.content"
+                               header="csvWards.header"
+                               separator="csvWards.separator"
+                               result="csvWards.result"
+                               callback="csvWards.callback"
+                               accept="csvWards.accept">
+                </ng-csv-import>
+
+                <div class="block" ng-if="csvWards.result">
+                  <br>
+
+                  <button type="button" class="btn btn-sm btn-danger" ng-click="onAssociateWards()">
+                    ASSOCIATE WARDS
+                  </button>
+
+                  <table class="table no-margin">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Username</th>
+                      <th>Ward Code</th>
+                      <th>Success</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in csvWards.result">
+                      <td>{{$index + 1}}</td>
+                      <td>{{row.username}}</td>
+                      <td>{{row.ward_code}}</td>
+                      <td>{{row.outcome}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div><!--end .card-body -->
+    </div><!--end .card -->
+  </div><!--end .col -->
+  <!-- END LAYOUT JUSTIFIED -->
+
+</section>
+
+
+
+

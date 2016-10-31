@@ -1,0 +1,81 @@
+{
+  "stats": {},
+  "response": [
+    [
+      {
+        "udprn": 16251134,
+        "roll_house": "1",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "1",
+        "voters": []
+      },
+      {
+        "udprn": 16251135,
+        "roll_house": "2",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "2",
+        "voters": []
+      },
+      {
+        "udprn": 16251136,
+        "roll_house": "3",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "3",
+        "voters": []
+      },
+      {
+        "udprn": 16251137,
+        "roll_house": "4",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "4",
+        "voters": []
+      },
+      {
+        "udprn": 16251138,
+        "roll_house": "5",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "5",
+        "voters": []
+      },
+      {
+        "udprn": 16251139,
+        "roll_house": "6",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "6",
+        "voters": []
+      },
+      {
+        "udprn": 16251140,
+        "roll_house": "7",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 6PG",
+        "premise": "7",
+        "voters": []
+      }
+    ],
+    [
+      {
+        "udprn": 16246111,
+        "roll_house": "N P I L Pharmaceuticals Uk Ltd",
+        "roll_street": "Tranwell Court",
+        "post_town": "Morpeth",
+        "postcode": "NE61 3YA",
+        "premise": "",
+        "voters": []
+      }
+    ]
+  ]
+}

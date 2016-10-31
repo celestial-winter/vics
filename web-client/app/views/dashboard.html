@@ -1,0 +1,371 @@
+<section>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h2 class="text-light"><i class="fa fa-clock-o fa-fw fa-2x text-danger"> </i>
+          Referendum <strong class="text-danger">Countdown</strong>
+          <br/><small class="text-danger">Polls close in</small>
+        </h2>
+      </div>
+    </div>
+    <br/>
+
+    <div class="row visible-xs">
+      <div class="col-sm-12">
+        <div class="card text-center">
+          <div class="card-body style-gray">
+
+            <div class="row">
+              <div class="col-xs-3">
+                <h2 class="text-light">Days</h2>
+                <div class="price">
+                  <h2><span class="text-normal">{{days}}</span></h2>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <h2 class="text-light">Hours</h2>
+                <div class="price">
+                  <h2><span class="text-normal">{{hours}}</span></h2>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <h2 class="text-light">Min</h2>
+                <div class="price">
+                  <h2><span class="text-normal">{{minutes}}</span></h2>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <h2 class="text-light">Sec</h2>
+                <div class="price">
+                  <h2><span class="text-normal">{{seconds | number:0}}</span></h2>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Days -->
+    <div class="row hidden-xs">
+      <div class="col-sm-3 col-md-3">
+        <div class="card text-center">
+          <div class="card-body style-gray">
+            <h2 class="text-light">Days</h2>
+            <div class="price">
+              <h2><span class="text-xxl">{{days}}</span></h2>
+            </div>
+          </div><!--end .card-body -->
+
+        </div><!--end .card -->
+      </div><!--end .col -->
+
+      <!-- Hours -->
+      <div class="col-sm-3 col-md-3">
+        <div class="card text-center">
+
+          <div class="card-body style-gray">
+            <h2 class="text-light">Hours</h2>
+            <div class="price">
+              <h2><span class="text-xxl">{{hours}}</span></h2>
+            </div>
+          </div><!--end .card-body -->
+
+        </div><!--end .card -->
+      </div><!--end .col -->
+
+      <!-- Minutes -->
+      <div class="col-sm-3 col-md-3">
+        <div class="card text-center">
+
+          <div class="card-body style-gray">
+            <h2 class="text-light">Minutes</h2>
+            <div class="price">
+              <h2><span class="text-xxl">{{minutes}}</span></h2>
+            </div>
+          </div><!--end .card-body -->
+
+        </div><!--end .card -->
+      </div><!--end .col -->
+
+      <!-- Seconds -->
+      <div class="col-sm-3 col-md-3">
+        <div class="card text-center">
+
+          <div class="card-body style-gray">
+            <h2 class="text-light">Seconds</h2>
+            <div class="price">
+              <h2><span class="text-xxl">{{seconds | number:0}}</span></h2>
+            </div>
+          </div><!--end .card-body -->
+
+        </div><!--end .card -->
+      </div><!--end .col -->
+    </div><!--end .row -->
+    <!-- END PRICING CARDS 1 -->
+
+    <div class="row">
+      <!-- BEGIN LAYOUT JUSTIFIED -->
+      <div class="col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-head">
+            <ul class="nav nav-tabs nav-justified" data-toggle="tabs">
+              <li ng-class="{'tab-pane': true, 'active': currentTab === 'activists'}"><a class="cursor-hand"
+                                                                                         ng-click="changeLeaderboardTab('activists')">Activists</a>
+              </li>
+              <li ng-class="{'tab-pane': true, 'active': currentTab === 'wards'}"><a class="cursor-hand"
+                                                                                     ng-click="changeLeaderboardTab('wards')">Wards</a>
+              </li>
+              <li ng-class="{'tab-pane': true, 'active': currentTab === 'constituencies'}"><a class="cursor-hand"
+                                                                                              ng-click="changeLeaderboardTab('constituencies')">Constituencies</a>
+              </li>
+            </ul>
+          </div><!--end .card-head -->
+          <div class="card-body tab-content height-9">
+            <div class="full-height" ng-if="currentTab === 'activists'" id="first4">
+              <img ng-show="!stats.topCanvassers" class="leaderboard-loader" src="images/spin.gif">
+              <ul class="list divider-full-bleed">
+                <li ng-repeat="c in stats.topCanvassers" class="tile">
+                  <a class="tile-content ink-reaction">
+                    <div class="tile-icon">
+                      <i ng-if="$index === 0" class="fa fa-trophy gold-trophy"></i>
+                      <i ng-if="$index === 1" class="fa fa-trophy silver-trophy"></i>
+                      <i ng-if="$index === 2" class="fa fa-trophy bronze-trophy"></i>
+                      <i ng-if="$index === 3" class="md md-filter-4"></i>
+                      <i ng-if="$index === 4" class="md md-filter-5"></i>
+                      <i ng-if="$index === 5" class="md md-filter-6"></i>
+                    </div>
+                    <div class="tile-text">{{c.key}}</div>
+                    <div class="tile-text">{{c.count}}</div>
+                  </a>
+                </li>
+              </ul>
+              <span ng-show="stats.topCanvassers" class="text-caption cursor-hand pull-right more-leaderboard" ng-click="showTop50Activists()" data-toggle="modal" data-target="#simpleModal">More ...</span>
+            </div>
+            <div ng-if="currentTab === 'wards'" id="second4">
+              <ul class="list divider-full-bleed">
+                <li ng-repeat="w in stats.topWards" class="tile">
+                  <a class="tile-content ink-reaction">
+                    <div class="tile-icon">
+                      <i ng-if="$index === 0" class="fa fa-trophy gold-trophy"></i>
+                      <i ng-if="$index === 1" class="fa fa-trophy silver-trophy"></i>
+                      <i ng-if="$index === 2" class="fa fa-trophy bronze-trophy"></i>
+                      <i ng-if="$index === 3" class="md md-filter-4"></i>
+                      <i ng-if="$index === 4" class="md md-filter-5"></i>
+                      <i ng-if="$index === 5" class="md md-filter-6"></i>
+                    </div>
+                    <div class="tile-text">{{w.key}}</div>
+                    <div class="tile-text">{{w.count}}</div>
+                  </a>
+                </li>
+              </ul>
+              <span ng-show="stats.topWards" class="text-caption cursor-hand pull-right more-leaderboard" ng-click="showTop50Wards()" data-toggle="modal" data-target="#simpleModal">More ...</span>
+            </div>
+            <div ng-if="currentTab === 'constituencies'" id="third4">
+              <ul class="list divider-full-bleed">
+                <li ng-repeat="c in stats.topConstituencies" class="tile">
+                  <a class="tile-content ink-reaction">
+                    <div class="tile-icon">
+                      <i ng-if="$index === 0" class="fa fa-trophy gold-trophy"></i>
+                      <i ng-if="$index === 1" class="fa fa-trophy silver-trophy"></i>
+                      <i ng-if="$index === 2" class="fa fa-trophy bronze-trophy"></i>
+                      <i ng-if="$index === 3" class="md md-filter-4"></i>
+                      <i ng-if="$index === 4" class="md md-filter-5"></i>
+                      <i ng-if="$index === 5" class="md md-filter-6"></i>
+                    </div>
+                    <div class="tile-text">{{c.key}}</div>
+                    <div class="tile-text">{{c.count}}</div>
+                  </a>
+                </li>
+              </ul>
+              <span ng-show="stats.topConstituencies" class="text-caption cursor-hand pull-right more-leaderboard" ng-click="showTop50Constituencies()" data-toggle="modal" data-target="#simpleModal">More ...</span>
+            </div>
+          </div><!--end .card-body -->
+        </div><!--end .card -->
+        <em class="text-caption">Leaderboards based on data entry</em>
+      </div><!--end .col -->
+
+      <div class="col-sm-6 col-xs-12">
+        <div class="card style-primary">
+          <div class="card-head">
+            <header>Where's my ward?</header>
+          </div>
+          <div class="card-body height-9">
+
+            <div class="row">
+              <form class="form" ng-submit="findWard(postCode)">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-content">
+                      <input type="text" class="form-control wheres-input" id="groupbutton9"
+                             ng-model="postCode"
+                             uppercased>
+                      <label for="groupbutton9" class="wheres-label">Post Code</label>
+                    </div>
+                    <div class="input-group-btn">
+                      <button class="btn btn-accent-light btn-sm" style="background-color: white; color: black;"
+                              type="submit">Search
+                      </button>
+                    </div>
+                  </div>
+                </div><!--end .form-group -->
+              </form>
+            </div>
+
+            <div class="row" style="color: black;">
+
+              <ui-gmap-google-map id="postcodeMap" center='map.center' options="map.control" zoom='map.zoom'>
+                <ui-gmap-markers models="markers" coords="'self'" modelsbyref="false"/>
+              </ui-gmap-google-map>
+
+              <div class="worldmap box" ng-if="constituencyName">
+                <span class="text-bold">Constituency</span>&nbsp;&nbsp;{{constituencyName}}<br>
+                <span class="text-bold">Ward</span>&nbsp;&nbsp;{{wardName}}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="!hideCharts">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-head">
+            <header>Canvassing Stats &nbsp;&nbsp;
+              <span class="badge cursor-hand" ng-click="onShowWeeklyStatsConfig()" ng-if="graphLabel !== '' && showCanvassedGraph">{{graphLabel}}</span>
+            </header>
+            <div class="tools">
+              <div class="btn-group">
+                <a ng-show="!showCanvassedGraph" ng-click="onShowWeeklyStatsConfig()"
+                   class="btn btn-icon-toggle btn-refresh"><i class="md md-undo"></i></a>
+                <a ng-show="showCanvassedGraph" ng-click="onShowWeeklyStatsConfig()" uib-tooltip="Change District"
+                   class="btn btn-icon-toggle btn-refresh"><i class="fa fa-gear"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- graph -->
+          <div class="card-body text-center" ng-show="showCanvassedGraph">
+            <div class="row">
+              <div class="col-md-6">
+                <nvd3 options="options" data="data" api="api"></nvd3>
+              </div>
+              <div class="col-md-3">
+                <table class="table table-striped no-margin">
+                  <tbody>
+                  <tr>
+                    <td>Voting Intentions</td>
+                    <td><strong ng-show="statsTable.intention">{{sumIntentions(statsTable.intention) | number}}</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Voted</td>
+                    <td><strong>{{statsTable.voted.total | number}}</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Pledges Voted</td>
+                    <td><strong>{{statsTable.voted.pledged | number}}</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Pledges</td>
+                    <td><strong>{{statsTable.pledged | number}}</strong></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-3">
+                <nvd3 ng-if="statsTable.pledged > 0" options="pieOptions" data="pieData"></nvd3>
+                <div ng-if="statsTable.pledged === 0"><h4>No Pledges</h4></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- config -->
+          <div class="card-body text-center" ng-show="!showCanvassedGraph">
+            <form class="form" ng-submit="onSetWard()">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button class="btn btn-success btn-sm" type="submit">
+                      GO
+                    </button>
+                  </div>
+                  <div class="input-group-content">
+                    <input type="text"
+                           ng-change="onWardInputKeypress()"
+                           placeholder="Type a ward name"
+                           id="wardInputID"
+                           ng-model="wardSearchModel"
+                           typeahead="w as w.name + ' (' + w.code + ') in ' + w.constituency.name for w in wards | filter:$viewValue | limitTo:50"
+                           typeahead-on-select="onSelectConstituency()"
+                           typeahead-loading="true"
+                           class="form-control">
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <br>
+
+            <form class="form" ng-submit="onSetConstituency()">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button class="btn btn-success btn-sm" type="submit">
+                      GO
+                    </button>
+                  </div>
+                  <div class="input-group-content">
+                    <input type="text"
+                           ng-change="onConstituencyInputKeypress()"
+                           id="constituencyInputID"
+                           placeholder="Type a constituency name"
+                           ng-model="constituencySearchModel"
+                           typeahead="c as c.name + ' (' + c.code + ')' for c in constituencies | filter:$viewValue | limitTo:8"
+                           typeahead-on-select="onSelectConstituency()"
+                           typeahead-loading="true"
+                           class="form-control" id="pw1">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <em class="text-caption">Bar graph represents voters contacted and values may differ from voters canvassed</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- More lists -->
+<div class="modal fade" id="simpleModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="simpleModalLabel">Top 50</h4>
+      </div>
+      <div class="modal-body">
+
+        <ul class="list divider-full-bleed">
+          <li ng-repeat="c in stats.topMore" class="tile">
+            <a class="tile-content ink-reaction">
+              <div class="tile-icon">
+                <i ng-if="$index === 0" class="fa fa-trophy gold-trophy"></i>
+                <i ng-if="$index === 1" class="fa fa-trophy silver-trophy"></i>
+                <i ng-if="$index === 2" class="fa fa-trophy bronze-trophy"></i>
+                <span class="text-center text-bold" ng-if="$index > 2">&nbsp;&nbsp;{{$index+1}}</span>
+              </div>
+              <div class="tile-text">{{c.key}}</div>
+              <div class="tile-text">{{c.count}}</div>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
