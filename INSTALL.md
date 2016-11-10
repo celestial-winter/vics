@@ -8,14 +8,14 @@
 
 ## Install dependencies:
 
-```sudo apt-get install build-essential tcl8.5 redis-server postgresql postgresql-contrib git-core maven ntpdate```
+```sudo apt-get install build-essential tcl8.5 redis-server postgresql postgresql-contrib git-core maven ntpdate curl```
 
 On debian stable (jessie), maven 3.1.0 is required for vics web-client:
 
 ```apt-get -t jessie-backports install maven```
 
 
-## Set correct time on server (needed for git clone over https):
+## Optionally, set correct time on server (needed for git clone over https):
 
 ```ntpdate -u time.nist.gov```
 
@@ -28,6 +28,7 @@ sudo git clone https://github.com/celestial-winter/vics.git
 cd vics
 ```
 
+
 ## Create canvassing database:
 
 ```
@@ -36,11 +37,13 @@ sudo -u postgres createuser root
 sudo -u postgres createuser ubuntu
 ```
 
+
 ## Run database creation script:
 
 ```
 psql -f web-server/src/test/resources/sql/drop-create.sql canvassapp
 ```
+
 
 ## Install Oracle Java 8:
 
@@ -55,6 +58,18 @@ In /etc/environment set JAVA_HOME to point to the jre, then load with:
 java -version
 echo $JAVA_HOME
 ```
+
+
+## Install Bower with npm and check versions
+
+```
+curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
+apt-get install nodejs
+node -v
+npm install bower -g
+bower -v
+``` 
+
 
 ## Build VICS:
 
