@@ -1,3 +1,5 @@
+[This project is no longer maintained]
+
 # vics
 
 Voter Intention Collection System. An application to collect voting intentions
