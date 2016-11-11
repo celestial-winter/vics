@@ -54,11 +54,15 @@ Download latest version from https://jdk8.java.net/download.html and unpack in /
 
 In /etc/environment set JAVA_HOME to point to the jre, for example:
 
-```JAVA_HOME="/opt/jdk1.8.0_122/jre/"```
+```
+JAVA_HOME="/opt/jdk1.8.0_122/jre/"
+```
 
 then load with: 
 
-```. /etc/environment```
+```
+. /etc/environment
+```
 
 
 ## Check Java version is 1.8.x:
