@@ -35,6 +35,9 @@ cd vics
 sudo -u postgres createdb canvassapp
 sudo -u postgres createuser root
 sudo -u postgres createuser ubuntu
+sudo -u postgres psql
+ALTER USER postgres PASSWORD 'postgres';
+\q
 ```
 
 
@@ -48,7 +51,13 @@ psql -f web-server/src/test/resources/sql/drop-create.sql canvassapp
 ## Install Oracle Java 8:
 
 Download latest version from https://jdk8.java.net/download.html and unpack in /opt
-In /etc/environment set JAVA_HOME to point to the jre, then load with: 
+
+In /etc/environment set JAVA_HOME to point to the jre, for example:
+
+```JAVA_HOME="/opt/jdk1.8.0_122/jre/"```
+
+then load with: 
+
 ```. /etc/environment```
 
 
@@ -60,14 +69,20 @@ echo $JAVA_HOME
 ```
 
 
-## Install Bower with npm and check versions
+## Install Node.js, Bower and Karma and check versions
 
 ```
 curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
 apt-get install nodejs
 node -v
-npm install bower -g
+
+npm install -g bower
 bower -v
+echo '{ "allow_root": true }' > /root/.bowerrc
+
+cd web-client
+npm install --save-dev karma
+
 ``` 
 
 
