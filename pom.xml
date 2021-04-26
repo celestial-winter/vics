@@ -31,7 +31,7 @@
 
         <apache-http-client.version>4.5.1</apache-http-client.version>
         <commons-csv.version>1.2</commons-csv.version>
-        <commons-io.version>2.5</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-lang3.version>3.0</commons-lang3.version>
         <db-setup.version>1.6.0</db-setup.version>
         <equals-verifier.version>1.7.8</equals-verifier.version>
