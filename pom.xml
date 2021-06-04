@@ -29,7 +29,7 @@
         <buildtimestamp>${maven.build.timestamp}</buildtimestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 
-        <apache-http-client.version>4.5.1</apache-http-client.version>
+        <apache-http-client.version>4.5.13</apache-http-client.version>
         <commons-csv.version>1.2</commons-csv.version>
         <commons-io.version>2.5</commons-io.version>
         <commons-lang3.version>3.0</commons-lang3.version>
