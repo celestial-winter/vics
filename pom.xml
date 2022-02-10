@@ -47,7 +47,7 @@
         <kotlin.version>1.0.1-2</kotlin.version>
         <logstash.version>4.6</logstash.version>
         <mockito.version>1.10.19</mockito.version>
-        <postgresql.version>9.3-1100-jdbc41</postgresql.version>
+        <postgresql.version>42.2.25</postgresql.version>
         <retrofit.version>2.0.0</retrofit.version>
         <sendgrid-client.version>2.2.2</sendgrid-client.version>
         <scala.version>2.11.7</scala.version>
