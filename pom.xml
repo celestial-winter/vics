@@ -52,7 +52,7 @@
         <sendgrid-client.version>2.2.2</sendgrid-client.version>
         <scala.version>2.11.7</scala.version>
         <scalatest.version>3.0.0-M15</scalatest.version>
-        <spring-boot.version>1.3.3.RELEASE</spring-boot.version>
+        <spring-boot.version>2.5.12</spring-boot.version>
         <spring-boot-admin.version>1.3.2</spring-boot-admin.version>
         <spring-security-test.version>4.0.3.RELEASE</spring-security-test.version>
         <spring-session.version>1.0.2.RELEASE</spring-session.version>
