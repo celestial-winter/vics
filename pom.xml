@@ -44,7 +44,7 @@
         <jackson.version>2.6.3</jackson.version>
         <jmh.version>0.1</jmh.version>
         <jsr305.version>3.0.0</jsr305.version>
-        <kotlin.version>1.0.1-2</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
         <logstash.version>4.6</logstash.version>
         <mockito.version>1.10.19</mockito.version>
         <postgresql.version>9.3-1100-jdbc41</postgresql.version>
